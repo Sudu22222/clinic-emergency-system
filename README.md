@@ -18,6 +18,10 @@ HealthPulse is a React frontend with a PHP/MySQL API. Authentication uses PHP se
 6. Copy the contents of `dist` into the web directory (`htdocs/healthpulse` in the example), and copy the PHP files from `api` into its `api` subdirectory. Do not put the SQL setup files in the public web directory.
 7. Open the app through Apache, for example `http://localhost/healthpulse/`. The frontend and PHP API should use the same host and scheme so PHP session cookies work.
 
+### If the browser reports a `main.tsx` MIME-type error
+
+The repository-root `index.html` is the Vite development entry and references `/src/main.tsx`; it is not the production page. `dist/` is intentionally excluded from Git, so pushing the source repository alone does not publish the compiled application. Run `npm run build`, then upload the **contents inside `dist`** to the web document root (not the repository root and not a nested `dist` directory). The deployed `index.html` should reference `./assets/*.js` and `./assets/*.css`, and those files must exist in the adjacent `assets` folder. Keep the PHP API under the corresponding `api` folder. A static GitHub Pages site cannot execute the PHP/MySQL API; use a PHP-capable host for the complete application.
+
 For development in this workspace, keep XAMPP MySQL running, then start the PHP API server from the project folder in a separate PowerShell terminal:
 
 ```powershell
