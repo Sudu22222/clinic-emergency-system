@@ -7,6 +7,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react(), tailwindcss()],
+    base: './', // Ensures relative asset paths
     server: {
       proxy: {
         '/api': {
@@ -17,4 +18,3 @@ export default defineConfig(({ mode }) => {
     },
   }
 })
-
